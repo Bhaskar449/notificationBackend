@@ -42,6 +42,7 @@ class DeviceToken(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     token = db.Column(db.String(255), nullable=False, unique=True)
     device_type = db.Column(db.String(20), nullable=False)  # 'ios', 'android'
+    token_type = db.Column(db.String(20), nullable=False, default='expo')  # 'expo', 'fcm'
     device_id = db.Column(db.String(255), nullable=True)
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -57,6 +58,7 @@ class DeviceToken(db.Model):
             'user_id': self.user_id,
             'token': self.token,
             'device_type': self.device_type,
+            'token_type': self.token_type,
             'device_id': self.device_id,
             'is_active': self.is_active,
             'created_at': self.created_at.isoformat(),

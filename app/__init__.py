@@ -27,8 +27,10 @@ def create_app(config_name='default'):
     # Register blueprints
     from app.views.user_views import user_bp
     from app.views.auth_views import auth_bp
+    from app.views.notification_views import notification_bp
     
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(user_bp, url_prefix='/api/users')
+    app.register_blueprint(notification_bp, url_prefix='/api/notifications')
     
     return app 
